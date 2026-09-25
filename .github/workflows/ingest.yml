@@ -1,7 +1,7 @@
 # Pulls new Google Voice texts from Gmail, grades them, and writes them to Supabase
 # every 10 minutes. Add these repository secrets: GMAIL_USER, GMAIL_APP_PASSWORD,
 # SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, and optionally ANTHROPIC_API_KEY,
-# GHL_TOKEN, GHL_LOCATION_ID.
+# GHL_TOKEN, GHL_LOCATION_ID. Then add the repository variable INGEST_ENABLED=true.
 name: ingest texts
 on:
   schedule:
@@ -12,6 +12,8 @@ jobs:
   ingest:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    # Stays idle until the Gmail and Supabase secrets are added.
+    if: ${{ vars.INGEST_ENABLED == 'true' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
