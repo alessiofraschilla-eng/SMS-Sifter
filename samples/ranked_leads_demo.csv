@@ -1,0 +1,14 @@
+rank,tier,score,phone,last_reply,reasons,replies,last_reply_at
+1,HOT,100,+15552013344,"Yes I'm thinking about selling, what would you offer for it? Roof needs repairs",affirmative; wants to sell; asking for an offer; motivation signal; asked a question,1,2026-09-21T14:05:00-04:00
+2,HOT,100,+15550000005,"Yes please call me, I inherited the place and want to sell it fast",affirmative; wants to sell; wants a call/visit; urgency; motivation signal,1,2026-09-20T00:04:00+00:00
+3,HOT,90,+15550000003,"Actually yes, can we talk tomorrow?",affirmative; wants a call/visit; asked a question,2,2026-09-20T00:12:00+00:00
+4,HOT,90,+15550000012,"Sure, make me an offer",affirmative; asking for an offer,1,2026-09-20T00:11:00+00:00
+5,HOT,90,+15550000010,How much would you pay?,asking for an offer; asking about price; asked a question,1,2026-09-20T00:09:00+00:00
+6,HOT,75,+15550000006,I'd like to learn more,wants more info,1,2026-09-20T00:05:00+00:00
+7,WARM,50,+15550000008,Not right now but maybe next year,maybe; timing is later,1,2026-09-20T00:07:00+00:00
+8,COLD,45,+15550000004,Who is this?,curious who we are; asked a question,1,2026-09-20T00:03:00+00:00
+9,DEAD,0,+15550000011,no,flat no,1,2026-09-20T00:10:00+00:00
+10,DEAD,0,+15550000001,Not interested,declined,1,2026-09-20T00:00:00+00:00
+11,DNC,0,+15550000009,stop texting me you vultures,opt-out / wrong number,1,2026-09-20T00:08:00+00:00
+12,DNC,0,+15550000007,wrong number,opt-out / wrong number,1,2026-09-20T00:06:00+00:00
+13,DNC,0,+15550000002,STOP,opt-out / wrong number,1,2026-09-20T00:01:00+00:00

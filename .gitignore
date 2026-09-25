@@ -1,0 +1,7 @@
+node_modules
+dist
+.env
+.env.local
+leads.db
+ranked_leads.csv
+__pycache__
