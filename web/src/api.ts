@@ -118,7 +118,7 @@ function demoApi(): Api {
       return data.team;
     },
     async leads() {
-      return rank(data.leads.map((l) => ({ ...l })));
+      return rank(data.leads.filter((l) => !l.deleted_at).map((l) => ({ ...l })));
     },
     async thread(leadId) {
       return {

@@ -106,9 +106,9 @@ function EditableText({ value, placeholder, onSave, className }: {
   );
 }
 
-function LeadDetail({ lead, team, me, onPatch, onClose, version }: {
+function LeadDetail({ lead, team, me, onPatch, onClose, onDelete, version }: {
   lead: Lead; team: TeamMember[]; me: string; version: number;
-  onPatch: (p: LeadPatch) => void; onClose: () => void;
+  onPatch: (p: LeadPatch) => void; onClose: () => void; onDelete: () => void;
 }) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [notes, setNotes] = useState<Note[]>([]);
@@ -236,6 +236,18 @@ function LeadDetail({ lead, team, me, onPatch, onClose, version }: {
         />
         <button className="btn btn-primary" disabled={!noteDraft.trim()}>Add note</button>
       </form>
+
+      <div className="danger-zone">
+        <button
+          className="btn btn-danger"
+          onClick={() => {
+            const who = lead.name ?? fmtPhone(lead.phone);
+            if (confirm(`Delete ${who}? They disappear from the list. If they text again, they come back.`)) onDelete();
+          }}
+        >
+          Delete lead
+        </button>
+      </div>
     </aside>
   );
 }
@@ -425,6 +437,17 @@ function Desk({ me }: { me: string }) {
           version={version}
           onPatch={(p) => patch(current.id, p)}
           onClose={() => setSelected(null)}
+          onDelete={async () => {
+            const id = current.id;
+            setSelected(null);
+            setLeads((ls) => ls.filter((l) => l.id !== id));
+            try {
+              await api.updateLead(id, { deleted_at: new Date().toISOString() });
+            } catch (err) {
+              setError((err as Error).message);
+            }
+            load();
+          }}
         />
       )}
     </div>

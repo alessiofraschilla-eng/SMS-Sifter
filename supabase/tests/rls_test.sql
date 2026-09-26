@@ -77,6 +77,20 @@ set request.jwt.claims = '{"email":"alessio@example.com"}';
 delete from notes;
 do $$ begin assert (select count(*) from notes) = 1, 'deleted partner note'; end $$;
 reset role;
+
+-- Delete hides a lead; an older re-import doesn't revive it, a new reply does.
+set role authenticated;
+set request.jwt.claims = '{"email":"alessio@example.com"}';
+update leads set deleted_at = '2026-09-21 00:00+00' where phone = '+15550000003';
+do $$ begin assert (select count(*) from ranked_leads where phone = '+15550000003') = 0, 'deleted lead still listed'; end $$;
+reset role;
+insert into messages (lead_id, body, sent_at, source_message_id, score, tier)
+  select id, 'old one', '2026-09-20 09:00+00', 'm-old', 50, 'WARM' from leads where phone = '+15550000003';
+do $$ begin assert (select deleted_at from leads where phone = '+15550000003') is not null, 'old text revived lead'; end $$;
+insert into messages (lead_id, body, sent_at, source_message_id, score, tier)
+  select id, 'still want to sell', '2026-09-22 09:00+00', 'm-new', 90, 'HOT' from leads where phone = '+15550000003';
+do $$ begin assert (select deleted_at from leads where phone = '+15550000003') is null, 'new text should revive lead'; end $$;
+
 -- Outbound-only message must not break the trigger.
 insert into leads (phone) values ('+15550000099');
 insert into messages (lead_id, direction, body, sent_at) select id, 'out', 'hi', now() from leads where phone = '+15550000099';

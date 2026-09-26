@@ -173,6 +173,9 @@ table.leads { width: 100%; border-collapse: collapse; }
 .btn:disabled { opacity: .5; cursor: default; }
 .btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
 .btn-ghost { background: none; }
+.btn-danger { background: none; border-color: color-mix(in srgb, var(--hot) 50%, var(--line)); color: var(--hot); }
+.btn-danger:hover { background: color-mix(in srgb, var(--hot) 12%, transparent); }
+.danger-zone { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--line); }
 .banner { background: color-mix(in srgb, var(--hot) 10%, transparent); padding: 8px 12px; border-radius: var(--radius); }
 
 /* ---------- login ---------- */

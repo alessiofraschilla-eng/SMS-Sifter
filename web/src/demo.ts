@@ -36,7 +36,7 @@ export function demoData() {
   const ago = (m: number) => new Date(now - m * 60_000).toISOString();
   const team: TeamMember[] = [
     { email: A, name: "Alessio" },
-    { email: P, name: "Partner" },
+    { email: P, name: "Lucas" },
   ];
   const leads: Lead[] = [];
   const messages: Message[] = [];
@@ -49,7 +49,7 @@ export function demoData() {
       id, phone, name, property_address: address, status, assigned_to: assigned,
       tier: dnc ? "DNC" : last[2], score: dnc ? 0 : last[3],
       last_reply: last[1], last_reply_at: ago(last[0]), reply_count: replies.length,
-      tier_override: null, asking_price: null,
+      tier_override: null, asking_price: null, deleted_at: null,
       effective_tier: last[2], effective_score: last[3], created_at: ago(replies[0][0] + 60),
     });
     messages.push({

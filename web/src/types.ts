@@ -30,13 +30,14 @@ export interface Lead {
   status: Status;
   assigned_to: string | null;
   asking_price: number | null;
+  deleted_at: string | null;
   effective_tier: Tier;
   effective_score: number;
   created_at: string;
 }
 
 export type LeadPatch = Partial<
-  Pick<Lead, "name" | "property_address" | "tier_override" | "status" | "assigned_to" | "asking_price">
+  Pick<Lead, "name" | "property_address" | "tier_override" | "status" | "assigned_to" | "asking_price" | "deleted_at">
 >;
 
 export interface Message {
